@@ -24,10 +24,10 @@ Logging to Console shows which stage is working and what data flows through the 
 </br>
 
 Example log:</br>
-[SensorReader]: Write sensor data to sensor channel: Temperature=72.13, Voltage=4.37, Timestamp=638610129745555444</br>
+[SensorReader]: Store sensor data to sensor channel: Temperature=72.13, Voltage=4.37, Timestamp=638610129745555444</br>
 [SensorDataProcessor]: Get sensor data batch and store processed data to processed channel: AvgTemp=71.56, PeakVolt=5.42</br>
 [ProcessedDataEventPublisher]: Publish processed data event: AvgTemp=71.56, PeakVolt=5.42</br>
-[ProcessedDataDatabaseWriter]: Write processed data to DB: AvgTemp=71.56, PeakVolt=5.42</br>
+[ProcessedDataDatabaseWriter]: Store processed data to DB: AvgTemp=71.56, PeakVolt=5.42</br>
 
 </br></br>
 

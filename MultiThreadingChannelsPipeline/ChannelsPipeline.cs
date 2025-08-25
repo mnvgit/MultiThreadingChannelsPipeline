@@ -71,7 +71,7 @@ namespace MultiThreadingChannelsPipeline
 
                 var processed = new ProcessedData(avgTemp, peakVolt, DateTime.UtcNow.Ticks);
                 await _processedDataChannel.Writer.WriteAsync(processed, ct);
-                Console.WriteLine($"[SensorDataProcessor]: Get sensor data batch and store to processed channel: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
+                Console.WriteLine($"[SensorDataProcessor]: Get sensor data batch and store processed data to processed channel: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
                 await Task.Delay(5000, ct);
             }
         }
@@ -95,7 +95,7 @@ namespace MultiThreadingChannelsPipeline
             {
                 var processed = await _processedDataChannel.Reader.ReadAsync(ct);
                 // Simulate async DB insert
-                Console.WriteLine($"[ProcessedDataDatabaseWriter]: Save processed data to DB: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
+                Console.WriteLine($"[ProcessedDataDatabaseWriter]: Store processed data to DB: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
                 await Task.Delay(5000, ct);
             }
         }
