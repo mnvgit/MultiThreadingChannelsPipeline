@@ -64,7 +64,8 @@ namespace MultiThreadingChannelsPipeline
                 foreach (var d in batch)
                 {
                     avgTemp += d.Temperature;
-                    if (d.Voltage > peakVolt) peakVolt = d.Voltage;
+                    if (d.Voltage > peakVolt) 
+                        peakVolt = d.Voltage;
                 }
                 avgTemp /= batch.Count;
 
@@ -82,8 +83,7 @@ namespace MultiThreadingChannelsPipeline
             {
                 var processed = await _processedDataChannel.Reader.ReadAsync(ct);
                 // Send to UI or network
-                Console.WriteLine($"[ProcessedDataEventPublisher]: Send processed data Event: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
-
+                Console.WriteLine($"[ProcessedDataEventPublisher]: Publish processed data event: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
                 await Task.Delay(5000, ct);
             }
         }
@@ -95,8 +95,8 @@ namespace MultiThreadingChannelsPipeline
             {
                 var processed = await _processedDataChannel.Reader.ReadAsync(ct);
                 // Simulate async DB insert
+                Console.WriteLine($"[ProcessedDataDatabaseWriter]: Save processed data to DB: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
                 await Task.Delay(5000, ct);
-                Console.WriteLine($"[ProcessedDataDatabaseWriter]: Saved processed data to DB: AvgTemp={processed.AvgTemp:F2}, PeakVolt={processed.PeakVoltage:F2}");
             }
         }
     }
